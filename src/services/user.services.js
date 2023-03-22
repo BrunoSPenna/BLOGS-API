@@ -34,7 +34,6 @@ const InsertUser = async (email, password, displayName, image) => {
     return users;
   } catch (e) {
     await t.rollback();
-    console.log(e);
     throw e;
   }
 };
