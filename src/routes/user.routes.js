@@ -1,5 +1,5 @@
 const express = require('express');
-const { userController, allUsersController, userByIdController,     
+const { userController, allUsersController, deleteUserByIdController, userByIdController,     
 } = require('../controllers/user.controller');
 
 const { validateEmail, validateName, validatePassword, validateUserId,
@@ -15,5 +15,6 @@ router.get('/:id', validateJWT, validateUserId, userByIdController);
 router.post('/', validateEmail,
 validateName,
 validatePassword, userController);
+router.delete('/me', validateJWT, deleteUserByIdController);
 
 module.exports = router;

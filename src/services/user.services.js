@@ -44,11 +44,18 @@ const getAllUsers = async () => {
   });
   return users;
 };
+const deleteUser = async (id) => {
+  await User.destroy({
+    where: { id },
+  });
+  return { status: 204 };
+};
 
 module.exports = {
   getByEmail,
   InsertUser,
   getByUserId,
   getAllUsers,
+  deleteUser,
   
 };
