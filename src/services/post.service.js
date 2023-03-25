@@ -6,14 +6,14 @@ const { BlogPost, User, Category, PostCategory } = require('../models/index');
 const env = process.env.NODE_ENV || 'development';
 const sequelize = new Sequelize(config[env]);
 
-const timeElapsed = Date.now();
-const today = new Date(timeElapsed);
+const time = Date.now();
+const hoje = new Date(time);
 
 const insertPost = async (title, content, userId, arrayIdsCate) => {
   const t = await sequelize.transaction();
   try {
     const posts = await BlogPost.create(
-      { title, content, userId, published: today.toISOString(), updated: today.toISOString() },
+      { title, content, userId, published: hoje.toISOString(), updated: hoje.toISOString() },
       { transaction: t },
     );
 
@@ -65,7 +65,7 @@ const getOneBlogPost = async (id) => {
   return { status: 200, response: posts };
 };
 
-const objFilter = (name) => ({
+const filter = (name) => ({
   where: {
     [Op.or]: [
       { title: { [Op.like]: `%${name}%` } },
@@ -84,7 +84,7 @@ const objFilter = (name) => ({
 });
 
 const getPostByTitleOrContent = async (name) => {
-  const obj = objFilter(name);
+  const obj = filter(name);
   const posts = await BlogPost.findAll(obj);
   return { status: 200, response: posts };
 };
