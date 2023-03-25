@@ -25,7 +25,7 @@ const validateCampusCategoryIds = async (req, res, next) => {
     if (!categoryIds) {
         return res.status(400).json({ message: 'Some required fields are missing' }); 
     }
-    const resultPromisse = await CategoryService.getCategoryById(categoryIds);
+    const resultPromisse = await CategoryService.categoryById(categoryIds);
     const result = resultPromisse.every((Category) => Category !== null);
     if (!result) return res.status(400).json({ message: 'one or more "categoryIds" not found' });
     return next();
