@@ -1,7 +1,7 @@
 const PostsService = require('../services/post.service');
 const getUser = require('../middlewares/getUserByToken');
 
-const getAllPostsController = async (_req, res) => {
+const allPostsController = async (_req, res) => {
     const { status, response } = await PostsService.getAllBlogPost();
     res.status(status).json(response);
 };
@@ -44,7 +44,7 @@ const deletePostController = async (req, res) => {
 };
 
 module.exports = {
-getAllPostsController,
+allPostsController,
 getOnePostController,
 getSearchPostController,
 putPostController,

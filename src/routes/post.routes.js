@@ -1,6 +1,6 @@
 const express = require('express');
 const {
-    getAllPostsController,
+    allPostsController,
     getOnePostController,
     getSearchPostController,
     putPostController,
@@ -14,7 +14,7 @@ const { validateUserFromPost,
 
 const router = express.Router();
 
-router.get('/', validateJWT, getAllPostsController);
+router.get('/', validateJWT, allPostsController);
 router.post('/', validateJWT, validateCampus, validateCampusCategoryIds, postPostController);
 router.get('/search', validateJWT, getSearchPostController);
 router.get('/:id', validateJWT, getOnePostController);
